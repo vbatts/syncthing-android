@@ -390,7 +390,7 @@ public class SettingsActivity extends SyncthingActivity {
         private class ChownFilesRunnable implements Runnable {
             @Override
             public void run() {
-                String f = getActivity().getFilesDir().getAbsolutePath();
+                String f = getActivity().getExternalFilesDir(null).getAbsolutePath();
                 List<String> out = Shell.SU.run("chown -R --reference=" + f + " " + f);
                 Log.i(TAG, "Changed owner of syncthing files, output: " + out);
             }

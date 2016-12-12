@@ -138,7 +138,7 @@ public class WebGuiActivity extends SyncthingActivity
     private void loadCaCert() {
         InputStream inStream = null;
         try {
-            String httpsCertPath = getFilesDir() + "/" + SyncthingService.HTTPS_CERT_FILE;
+            String httpsCertPath = getExternalFilesDir(null) + "/" + SyncthingService.HTTPS_CERT_FILE;
             inStream = new FileInputStream(httpsCertPath);
             CertificateFactory cf = CertificateFactory.getInstance("X.509");
             mCaCert = (X509Certificate)

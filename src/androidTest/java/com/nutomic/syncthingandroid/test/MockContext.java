@@ -67,8 +67,8 @@ public class MockContext extends ContextWrapper {
     }
 
     @Override
-    public File getFilesDir() {
-        File testFilesDir = new File(super.getFilesDir(), "test/");
+    public File getExternalFilesDir(String type) {
+        File testFilesDir = new File(super.getExternalFilesDir(type), "test/");
         testFilesDir.mkdir();
         return testFilesDir;
     }

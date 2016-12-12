@@ -36,7 +36,7 @@ public class RestApiTest {
 
         ConfigXml config = new ConfigXml(context);
 
-        String httpsCertPath = context.getFilesDir() + "/" + SyncthingService.HTTPS_CERT_FILE;
+        String httpsCertPath = context.getExternalFilesDir(null) + "/" + SyncthingService.HTTPS_CERT_FILE;
 
         final CountDownLatch latch = new CountDownLatch(2);
         new PollWebGuiAvailableTask(config.getWebGuiUrl(), httpsCertPath, config.getApiKey(), result -> {

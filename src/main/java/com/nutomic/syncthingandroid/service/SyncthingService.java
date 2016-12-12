@@ -452,7 +452,7 @@ public class SyncthingService extends Service implements
      * This will return true until the public key file has been generated.
      */
     public boolean isFirstStart() {
-        return !new File(getFilesDir(), PUBLIC_KEY_FILE).exists();
+        return !new File(getExternalFilesDir(null), PUBLIC_KEY_FILE).exists();
     }
 
     public RestApi getApi() {
@@ -491,7 +491,7 @@ public class SyncthingService extends Service implements
      * for SyncthingService.onDestroy for details.
      */
     private void pollWebGui() {
-        new PollWebGuiAvailableTask(getWebGuiUrl(), getFilesDir() + "/" + HTTPS_CERT_FILE,
+        new PollWebGuiAvailableTask(getWebGuiUrl(), getExternalFilesDir(null) + "/" + HTTPS_CERT_FILE,
                                     mConfig.getApiKey(), result -> {
             synchronized (stateLock) {
                 if (mStopScheduled) {
@@ -548,11 +548,11 @@ public class SyncthingService extends Service implements
     public void exportConfig() {
         EXPORT_PATH.mkdirs();
         try {
-            Files.copy(new File(getFilesDir(), ConfigXml.CONFIG_FILE),
+            Files.copy(new File(getExternalFilesDir(null), ConfigXml.CONFIG_FILE),
                     new File(EXPORT_PATH, ConfigXml.CONFIG_FILE));
-            Files.copy(new File(getFilesDir(), PRIVATE_KEY_FILE),
+            Files.copy(new File(getExternalFilesDir(null), PRIVATE_KEY_FILE),
                     new File(EXPORT_PATH, PRIVATE_KEY_FILE));
-            Files.copy(new File(getFilesDir(), PUBLIC_KEY_FILE),
+            Files.copy(new File(getExternalFilesDir(null), PUBLIC_KEY_FILE),
                     new File(EXPORT_PATH, PUBLIC_KEY_FILE));
         } catch (IOException e) {
             Log.w(TAG, "Failed to export config", e);
@@ -574,9 +574,9 @@ public class SyncthingService extends Service implements
             return false;
 
         try {
-            Files.copy(config, new File(getFilesDir(), ConfigXml.CONFIG_FILE));
-            Files.copy(privateKey, new File(getFilesDir(), PRIVATE_KEY_FILE));
-            Files.copy(publicKey, new File(getFilesDir(), PUBLIC_KEY_FILE));
+            Files.copy(config, new File(getExternalFilesDir(null), ConfigXml.CONFIG_FILE));
+            Files.copy(privateKey, new File(getExternalFilesDir(null), PRIVATE_KEY_FILE));
+            Files.copy(publicKey, new File(getExternalFilesDir(null), PUBLIC_KEY_FILE));
         } catch (IOException e) {
             Log.w(TAG, "Failed to import config", e);
         }

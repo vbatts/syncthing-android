@@ -70,13 +70,13 @@ public class SyncthingRunnable implements Runnable {
         mSyncthingBinary = mContext.getApplicationInfo().dataDir + "/" + BINARY_NAME;
         switch (command) {
             case generate:
-                mCommand = new String[]{ mSyncthingBinary, "-generate", mContext.getFilesDir().toString() };
+                mCommand = new String[]{ mSyncthingBinary, "-generate", mContext.getExternalFilesDir(null).toString() };
                 break;
             case main:
-                mCommand = new String[]{ mSyncthingBinary, "-home", mContext.getFilesDir().toString(), "-no-browser" };
+                mCommand = new String[]{ mSyncthingBinary, "-home", mContext.getExternalFilesDir(null).toString(), "-no-browser" };
                 break;
             case reset:
-                mCommand = new String[]{ mSyncthingBinary, "-home", mContext.getFilesDir().toString(), "-reset" };
+                mCommand = new String[]{ mSyncthingBinary, "-home", mContext.getExternalFilesDir(null).toString(), "-reset" };
                 break;
             default:
                 Log.w(TAG, "Unknown command option");
