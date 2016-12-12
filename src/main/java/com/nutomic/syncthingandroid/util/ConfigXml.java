@@ -83,7 +83,7 @@ public class ConfigXml {
     }
 
     public static File getConfigFile(Context context) {
-        return new File(context.getExternalFilesDir(null), CONFIG_FILE);
+        return new File(context.getExternalFilesDir("config"), CONFIG_FILE);
     }
 
     public URL getWebGuiUrl() {

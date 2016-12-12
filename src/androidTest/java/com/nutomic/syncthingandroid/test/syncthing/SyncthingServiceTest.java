@@ -52,7 +52,7 @@ public class SyncthingServiceTest {
 
     @After
     public void tearDown() {
-        new File(mService.getExternalFilesDir(null), SyncthingService.PUBLIC_KEY_FILE).delete();
+        new File(mService.getExternalFilesDir("config"), SyncthingService.PUBLIC_KEY_FILE).delete();
     }
 
     @Test
@@ -62,15 +62,15 @@ public class SyncthingServiceTest {
 
     @Test
     public void testNotFirstStart() throws IOException {
-        new File(mService.getExternalFilesDir(null), SyncthingService.PUBLIC_KEY_FILE).createNewFile();
+        new File(mService.getExternalFilesDir("config"), SyncthingService.PUBLIC_KEY_FILE).createNewFile();
         Assert.assertFalse(mService.isFirstStart());
     }
 
     @Test
     public void testImportExportConfig() {
-        File config     = new File(mService.getExternalFilesDir(null), ConfigXml.CONFIG_FILE);
-        File privateKey = new File(mService.getExternalFilesDir(null), SyncthingService.PRIVATE_KEY_FILE);
-        File publicKey  = new File(mService.getExternalFilesDir(null), SyncthingService.PUBLIC_KEY_FILE);
+        File config     = new File(mService.getExternalFilesDir("config"), ConfigXml.CONFIG_FILE);
+        File privateKey = new File(mService.getExternalFilesDir("config"), SyncthingService.PRIVATE_KEY_FILE);
+        File publicKey  = new File(mService.getExternalFilesDir("config"), SyncthingService.PUBLIC_KEY_FILE);
 
         try {
             config.createNewFile();

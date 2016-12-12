@@ -92,7 +92,7 @@ public class RestApi implements SyncthingService.OnWebGuiAvailableListener,
         mContext = context;
         mUrl = url;
         mApiKey = apiKey;
-        mHttpsCertPath = mContext.getExternalFilesDir(null) + "/" + SyncthingService.HTTPS_CERT_FILE;
+        mHttpsCertPath = mContext.getExternalFilesDir("config") + "/" + SyncthingService.HTTPS_CERT_FILE;
         mOnApiAvailableListener = apiListener;
         mOnConfigChangedListener = configListener;
     }

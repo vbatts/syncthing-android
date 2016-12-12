@@ -24,7 +24,7 @@ public class SyncthingRunnableTest {
     @Test
     public void testRunning() throws InterruptedException {
         MockContext context = new MockContext(InstrumentationRegistry.getTargetContext());
-        File testFile = new File(context.getExternalFilesDir(null), SyncthingRunnable.UNIT_TEST_PATH);
+        File testFile = new File(context.getExternalFilesDir("config"), SyncthingRunnable.UNIT_TEST_PATH);
         Assert.assertFalse(testFile.exists());
         // Inject a different command instead of the Syncthing binary for testing.
         new SyncthingRunnable(context, new String[]{"touch", testFile.getAbsolutePath()}).run();

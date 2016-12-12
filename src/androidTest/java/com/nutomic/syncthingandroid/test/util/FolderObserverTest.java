@@ -33,7 +33,7 @@ public class FolderObserverTest implements FolderObserver.OnFolderFileChangeList
 
     @Before
     public void setUp() throws Exception {
-        mTestFolder = new File(new MockContext(InstrumentationRegistry.getTargetContext()).getExternalFilesDir(null), "observer-test");
+        mTestFolder = new File(new MockContext(InstrumentationRegistry.getTargetContext()).getExternalFilesDir("config"), "observer-test");
         mTestFolder.mkdir();
     }
 
@@ -108,7 +108,7 @@ public class FolderObserverTest implements FolderObserver.OnFolderFileChangeList
     @Test
     public void testNotExisting() throws IOException, InterruptedException {
         Folder r = new Folder();
-        r.path = new File(new MockContext(InstrumentationRegistry.getTargetContext()).getExternalFilesDir(null), "not-existing").getPath();
+        r.path = new File(new MockContext(InstrumentationRegistry.getTargetContext()).getExternalFilesDir("config"), "not-existing").getPath();
         r.id = "testNotExisting";
         try {
             new FolderObserver(this, r);
