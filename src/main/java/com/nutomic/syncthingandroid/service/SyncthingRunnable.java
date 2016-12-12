@@ -70,13 +70,13 @@ public class SyncthingRunnable implements Runnable {
         mSyncthingBinary = mContext.getApplicationInfo().dataDir + "/" + BINARY_NAME;
         switch (command) {
             case generate:
-                mCommand = new String[]{ mSyncthingBinary, "-generate", mContext.getExternalFilesDir("config").toString() };
+                mCommand = new String[]{ mSyncthingBinary, "-generate", mContext.getDir("config", 0).toString() };
                 break;
             case main:
-                mCommand = new String[]{ mSyncthingBinary, "-home", mContext.getExternalFilesDir("config").toString(), "-no-browser" };
+                mCommand = new String[]{ mSyncthingBinary, "-home", mContext.getDir("config", 0).toString(), "-no-browser" };
                 break;
             case reset:
-                mCommand = new String[]{ mSyncthingBinary, "-home", mContext.getExternalFilesDir("config").toString(), "-reset" };
+                mCommand = new String[]{ mSyncthingBinary, "-home", mContext.getDir("config", 0).toString(), "-reset" };
                 break;
             default:
                 Log.w(TAG, "Unknown command option");
@@ -124,7 +124,7 @@ public class SyncthingRunnable implements Runnable {
             // Set home directory to data folder for web GUI folder picker.
             env.put("HOME", Environment.getExternalStorageDirectory().getAbsolutePath());
             env.put("STTRACE", sp.getString("sttrace", ""));
-            File externalFilesDir = mContext.getExternalFilesDir("config");
+            File externalFilesDir = mContext.getDir("config", 0);
             if (externalFilesDir != null)
                 env.put("STGUIASSETS", externalFilesDir.getAbsolutePath() + "/gui");
             env.put("STNORESTART", "1");

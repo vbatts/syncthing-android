@@ -14,7 +14,7 @@ import java.io.File;
 
 /**
  * NOTE: This test will cause a "syncthing binary crashed" notification, because
- * {@code -home " + mContext.getExternalFilesDir()} is run as a "command" and fails.
+ * {@code -home " + mContext.getDir(name, mode)} is run as a "command" and fails.
  */
 public class SyncthingRunnableTest {
 
@@ -24,7 +24,7 @@ public class SyncthingRunnableTest {
     @Test
     public void testRunning() throws InterruptedException {
         MockContext context = new MockContext(InstrumentationRegistry.getTargetContext());
-        File testFile = new File(context.getExternalFilesDir("config"), SyncthingRunnable.UNIT_TEST_PATH);
+        File testFile = new File(context.getDir("config", 0), SyncthingRunnable.UNIT_TEST_PATH);
         Assert.assertFalse(testFile.exists());
         // Inject a different command instead of the Syncthing binary for testing.
         new SyncthingRunnable(context, new String[]{"touch", testFile.getAbsolutePath()}).run();
